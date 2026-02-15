@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AccessibilityPanel from "@/components/AccessibilityPanel";
 import { COMPANY } from "@/lib/constants";
 
 const inter = Inter({
@@ -52,9 +53,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
+        {/* Skip to Content Link - WCAG 2.4.1 */}
+        <a
+          href="#main-content"
+          className="skip-to-content"
+        >
+          Skip to main content
+        </a>
+
         <Header />
-        <main className="min-h-screen">{children}</main>
+        
+        {/* Main Content - with landmark and id for skip link */}
+        <main id="main-content" className="min-h-screen" role="main">
+          {children}
+        </main>
+        
         <Footer />
+        
+        {/* Accessibility Panel */}
+        <AccessibilityPanel />
+
+        {/* Structured Data - Schema.org */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

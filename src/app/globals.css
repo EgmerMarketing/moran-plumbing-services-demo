@@ -11,6 +11,10 @@
   --font-family-body: "Inter", system-ui, sans-serif;
 }
 
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
 html {
   scroll-behavior: smooth;
 }
@@ -19,7 +23,250 @@ body {
   background-color: var(--color-charcoal-dark);
   color: white;
   font-family: var(--font-family-body);
+  line-height: 1.6;
 }
+
+/* ============================================
+   WCAG 2.1 ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+/* Skip to Content Link */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-gold);
+  color: black;
+  padding: 8px 16px;
+  z-index: 100;
+  font-weight: bold;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Enhanced Focus States - WCAG 2.4.7 */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Links - ensure visibility */
+a:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Button Focus */
+button:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Form Input Focus */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 0;
+  border-color: var(--color-gold);
+}
+
+/* ============================================
+   READER MODE STYLES
+   ============================================ */
+
+html.reader-mode {
+  /* Increased line height for readability */
+  --reader-line-height: 1.8;
+  
+  /* Wider content for comfortable reading */
+  --reader-max-width: 65ch;
+  
+  /* Larger base text */
+  --reader-font-size: 1.125rem;
+  
+  /* Better letter spacing */
+  --reader-letter-spacing: 0.01em;
+  
+  /* More paragraph spacing */
+  --reader-paragraph-spacing: 1.5em;
+}
+
+html.reader-mode body {
+  background-color: #1a1a1a;
+  color: #e5e5e5;
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  letter-spacing: var(--reader-letter-spacing);
+}
+
+/* Reader Mode - Simplify layout */
+html.reader-mode main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Reader Mode - Content sections */
+html.reader-mode section {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 2rem 0 !important;
+}
+
+/* Reader Mode - Typography */
+html.reader-mode h1,
+html.reader-mode h2,
+html.reader-mode h3,
+html.reader-mode h4,
+html.reader-mode h5,
+html.reader-mode h6 {
+  color: #ffffff;
+  line-height: 1.3;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+html.reader-mode h1 {
+  font-size: 2rem;
+}
+
+html.reader-mode h2 {
+  font-size: 1.5rem;
+}
+
+html.reader-mode h3 {
+  font-size: 1.25rem;
+}
+
+html.reader-mode p {
+  margin-bottom: var(--reader-paragraph-spacing);
+  max-width: var(--reader-max-width);
+}
+
+html.reader-mode ul,
+html.reader-mode ol {
+  margin-bottom: var(--reader-paragraph-spacing);
+  padding-left: 1.5em;
+}
+
+html.reader-mode li {
+  margin-bottom: 0.5em;
+}
+
+/* Reader Mode - Links are clearly visible */
+html.reader-mode a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+html.reader-mode a:hover {
+  color: var(--color-gold-light);
+}
+
+/* Reader Mode - Hide decorative elements */
+html.reader-mode .decorative,
+html.reader-mode [aria-hidden="true"]:not(svg path) {
+  opacity: 0.3;
+}
+
+/* Reader Mode - Cards become simple blocks */
+html.reader-mode .bg-charcoal,
+html.reader-mode .bg-charcoal-light {
+  background-color: transparent !important;
+  border: 1px solid #333 !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Reader Mode - Gold backgrounds become outlined */
+html.reader-mode .bg-gold {
+  background-color: transparent !important;
+  border: 2px solid var(--color-gold) !important;
+  color: var(--color-gold) !important;
+}
+
+html.reader-mode .bg-gold a,
+html.reader-mode .bg-gold span {
+  color: var(--color-gold) !important;
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+html.high-contrast {
+  --color-gold: #FFD700;
+  --color-charcoal: #000000;
+  --color-charcoal-dark: #000000;
+}
+
+html.high-contrast body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+html.high-contrast a {
+  color: #FFD700;
+  text-decoration: underline;
+}
+
+html.high-contrast .text-zinc-300,
+html.high-contrast .text-zinc-400,
+html.high-contrast .text-zinc-500 {
+  color: #ffffff !important;
+}
+
+html.high-contrast .bg-charcoal,
+html.high-contrast .bg-charcoal-light,
+html.high-contrast .bg-charcoal-dark {
+  background-color: #000000 !important;
+  border: 1px solid #ffffff !important;
+}
+
+html.high-contrast .border-zinc-800,
+html.high-contrast .border-zinc-700 {
+  border-color: #ffffff !important;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+html.reduced-motion *,
+html.reduced-motion *::before,
+html.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Also respect system preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   CUSTOM COLOR UTILITIES
+   ============================================ */
 
 .text-gold {
   color: var(--color-gold);
@@ -45,6 +292,62 @@ body {
   background-color: var(--color-charcoal-light);
 }
 
+.bg-charcoal-dark {
+  background-color: var(--color-charcoal-dark);
+}
+
 .ring-gold {
   --tw-ring-color: var(--color-gold);
+}
+
+/* ============================================
+   SCREEN READER UTILITIES
+   ============================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  a {
+    text-decoration: underline;
+    color: black;
+  }
+  
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
 }
