@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AccessibilityPanel from "@/components/AccessibilityPanel";
 import { COMPANY } from "@/lib/constants";
 
 const inter = Inter({
@@ -69,9 +68,6 @@ export default function RootLayout({
         </main>
         
         <Footer />
-        
-        {/* Accessibility Panel */}
-        <AccessibilityPanel />
 
         {/* Structured Data - Schema.org */}
         <script
